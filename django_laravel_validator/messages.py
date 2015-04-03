@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# PROJECT_NAME : invoker
+# PROJECT_NAME : django-laravel-validator
 # FILE_NAME    : 
 # AUTHOR       : younger shen
 
@@ -17,6 +17,7 @@ BOOLEAN_MESSAGE = u'The field under validation must be able to be cast as a bool
 REGEX_MESSAGE = u'The field under validation must match the given regular expression : {regex} .'
 MATCH_MESSAGE = u'the field must match : {match}. '
 UNIQUE_MESSAGE = u'the {field} field must be unique of table {model}.'
+JSON_MESSAGE = u'the {field} field must be a json string'
 # error messages
 
 UNIQUE_UNKNOW_APP_NAME = u'unknow app name : {appname}'

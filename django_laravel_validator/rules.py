@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# PROJECT_NAME : laravel_validator
+# PROJECT_NAME : django-laravel-validator
 # FILE_NAME    : 
 # AUTHOR       : younger shen
 from importlib import import_module
@@ -17,7 +17,7 @@ from .exceptions import InvalidLengthValidatorParameterError
 from .exceptions import InvalidRegexValidatorParameterError
 from .exceptions import InvalidMatchValidatorParameterError
 from .exceptions import InvalidUniqueValidatorParameterError
-from .messages import REQUIRED_MESSAGE
+from .messages import REQUIRED_MESSAGE, JSON_MESSAGE
 from .messages import NUMERIC_MESSAGE
 from .messages import MIN_MESSAGE
 from .messages import MAX_MESSAGE
@@ -324,6 +324,22 @@ class UniqueValidator(BaseValidator):
             raise ValidationError(code=self.code, message=self.message)
 
 
+class JsonValidator(BaseValidator):
+    def __init__(self, **kwargs):
+        super(RequiredValidator, self).__init__(**kwargs)
+        self.code = 'json'
+        self.message = JSON_MESSAGE
+
+    def __call__(self, value=None):
+        if value is None or value == '':
+            raise ValidationError(message=self.message, code=self.code)
+        import cjson
+        try:
+            cjson.decode(value)
+        except:
+            raise ValidationError(message=self.message, code=self.code)
+
+
 REQUIRED = RequiredValidator
 NUMERIC = NumericValidator
 MIN = MinValidator
@@ -338,3 +354,4 @@ BOOL = BooleanValidator
 REGEX = RegexValidator
 MATCH = MatchValidator
 UNIQUE = UniqueValidator
+JSON = JsonValidator
