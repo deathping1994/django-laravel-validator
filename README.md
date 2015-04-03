@@ -80,7 +80,7 @@ Rules:
     REGEX # complicated = 'regex:^[0-9A-Z]{10,20}$' , for validate a regex
     MATCH # password_confirm = 'required|match:password', match a exists field
     UNIQUE # email = 'required|unique:account.User,email' # parameter just the app and the model inside the app, then the model field.
-
+    JSON # json = 'json', match a json string, i use it for hstore data type.
 And others:
 
 i hate long and useless document, so just check the code for your purpose and fork it, and it just under my development
