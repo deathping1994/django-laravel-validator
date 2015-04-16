@@ -296,15 +296,15 @@ class UniqueValidator(BaseValidator):
             raise InvalidUniqueValidatorParameterError()
 
         temp = args[0].split('.')
-        temp.insert(1, 'models')
-        module_name = '.'.join(temp[:2])
+        temp.insert(-1, 'models')
+        module_name = '.'.join(temp[:-1])
         try:
             module = import_module(module_name)
         except ImportError:
             message = UNIQUE_UNKNOW_APP_NAME.format(appname=temp[0])
             raise InvalidUniqueValidatorParameterError(message)
 
-        klass = getattr(module, temp[2], None)
+        klass = getattr(module, temp[-1], None)
         if not klass:
             message = UNIQUE_UNKNOW_MODEL_NAME.format(appname=temp[0], modelname=temp[2])
             raise InvalidUniqueValidatorParameterError(message)
