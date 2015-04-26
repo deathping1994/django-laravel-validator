@@ -314,13 +314,12 @@ class UniqueValidator(BaseValidator):
 
     def __call__(self, value=None):
         try:
-            self.klass.objects.get(**{self.field: value})
+            objects = self.klass.objects.filter(**{self.field: value})
         except FieldError:
             message = UNIQUE_UNKNOW_MODEL_FIELD.format(fieldname=self.field)
             raise InvalidUniqueValidatorParameterError(message=message)
-        except self.klass.DoesNotExist:
-            return
-        else:
+
+        if objects.exists():
             raise ValidationError(code=self.code, message=self.message)
 
 
