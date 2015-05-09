@@ -60,6 +60,18 @@ class Validator(object):
     def get(self, item):
         return self.data.get(item, None)
 
+    def get_extra(self, item):
+        if self.extra_data:
+            return self.extra_data.get(item)
+        else:
+            return None
+
+    def set_extra(self, key, value):
+        if not getattr(self, 'extra_data', None):
+            setattr(self, 'extra_data', dict())
+        update = {key: value}
+        self.extra_data.update(update)
+
     def fails(self):
         validate_data = getattr(self, 'validate_data')
         for k in validate_data:

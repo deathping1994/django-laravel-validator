@@ -1,7 +1,6 @@
 from setuptools import setup, find_packages
-import sys, os
 
-version = '0.0.3'
+version = '0.0.4'
 
 setup(name='django-laravel-validator',
       version=version,
