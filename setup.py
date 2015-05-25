@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.0.4'
+version = '0.1'
 
 setup(name='django-laravel-validator',
       version=version,
@@ -28,7 +28,6 @@ setup(name='django-laravel-validator',
       install_requires=[
           # -*- Extra requirements: -*-
           'Django >= 1.6',
-          'cjson'
       ],
       entry_points="""
       # -*- Entry points: -*-
